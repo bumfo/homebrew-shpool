@@ -8,14 +8,14 @@ Homebrew tap for [shpool](https://github.com/shell-pool/shpool), a lightweight p
 ## Installation
 
 ```
-brew tap shell-pool/shpool
-brew install shpool
+brew tap bumfo/shpool
+brew install bumfo/shpool/shpool
 ```
 
 To have the daemon start automatically at login:
 
 ```
-brew services start shpool
+brew services start bumfo/shpool/shpool
 ```
 
 ## SSH configuration
@@ -37,7 +37,7 @@ Then `ssh main` or `ssh edit` will create or reattach to a named session. `%k` e
 
 ## Configuration
 
-`shpool` can be configured via `~/.config/shpool/config.toml`. See [CONFIG.md](https://github.com/shell-pool/shpool/blob/master/CONFIG.md) in the main repository for the full list of options.
+`shpool` can be configured via `~/Library/Application Support/shpool/config.toml` on macOS (or `~/.config/shpool/config.toml` on Linux). See [CONFIG.md](https://github.com/shell-pool/shpool/blob/master/CONFIG.md) in the main repository for the full list of options.
 
 ## More information
 
