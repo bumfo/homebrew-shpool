@@ -51,9 +51,9 @@ action = "detach"
 
 ## Shell helpers
 
-Add these to your `~/.zshrc` for convenient session management:
+Add these functions to your shell rc file (`~/.zshrc` or `~/.bashrc`):
 
-```zsh
+```bash
 # Attach a shpool session running Claude Code in the current directory
 # Usage: spc [flags] [claude args...]
 #   -n <name>  custom session name (default: current directory path)
@@ -70,18 +70,19 @@ spc() {
   done
   dir=$(cd "$dir" && pwd)
   name="${name:-$dir}"
-  shpool attach "$name" -d "$dir" -c "$(which claude) $*"; tput cnorm
+  shpool attach "$name" -d "$dir" -c "$SHELL -lc '$(which claude) $*'"; tput cnorm
 }
 
 # Attach a shpool shell session (default name: current directory path)
-spa() { shpool attach "${1:-$PWD}" -d .; tput cnorm }
+spa() { shpool attach "${1:-$PWD}" -d .; tput cnorm; }
 
 # List active sessions
-spl() { shpool list }
+spl() { shpool list; }
 ```
 
 > [!NOTE]
-> `tput cnorm` restores the terminal cursor after detaching, which is needed because some TUI apps (like Claude Code) hide the cursor.
+> - `tput cnorm` restores the terminal cursor after detaching, which is needed because some TUI apps (like Claude Code) hide the cursor.
+> - The command is wrapped in `$SHELL -lc '...'` so that your login profile (and `PATH`) is loaded inside the shpool session.
 
 ## More information
 
